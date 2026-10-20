@@ -1,0 +1,401 @@
+/* ==========================================================
+   Feuille de style du rapport MyBestSim.
+   Source éditable : elle est copiée dans rapport/style.css
+   à chaque génération (ne modifiez pas la copie).
+   Design repris de la page « comparison » de mybestsim.com :
+   police Poppins, cartes à bandeau gris, encadré à liseré rouge,
+   étiquettes en majuscules, accents bleu #007bff et rouge.
+   ========================================================== */
+
+
+/* ---------- Couleurs (valeurs relevées sur le site) ---------- */
+:root {
+    --couleur-fond: #ffffff;
+    --couleur-texte: #0f172a;           /* bleu nuit : titres */
+    --couleur-corps: #334155;           /* texte courant */
+    --couleur-discret: #64748b;
+    --couleur-etiquette: #999999;       /* petites étiquettes en majuscules */
+    --couleur-bleu: #007bff;            /* pastilles, flèches de tri */
+    --couleur-rouge: #e2001a;           /* liseré de l'encadré */
+    --couleur-bandeau: #f8fafc;         /* bandeaux gris des cartes */
+    --couleur-trait: #e5e7eb;
+    --couleur-trait-titre: #e8f1ff;     /* trait sous les titres h2 */
+    --couleur-survol: #f1f5f9;
+    --couleur-vert-fond: #e8f5e9;       /* pastille « mis à jour » */
+    --couleur-vert-trait: #c8e6c9;
+    --couleur-vert-texte: #2e7d32;
+    --couleur-alerte: #b45309;
+    --couleur-fond-alerte: #fffbeb;
+
+    --rayon-carte: 16px;
+    --ombre-carte: 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+}
+
+
+/* ---------- Base de la page ---------- */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 24px 16px;
+    background: var(--couleur-fond);
+    color: var(--couleur-corps);
+    font: 15px/1.6 Poppins, "Segoe UI", Arial, sans-serif;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* Sans cela, un tableau large élargit toute la page au lieu de défiler dans sa carte. */
+main > *,
+.grille-deux > *,
+.grille-kpi > * {
+    min-width: 0;
+}
+
+h1 {
+    margin: 0;
+    color: var(--couleur-texte);
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+/* Titres de section : trait bleu pâle en dessous, comme sur le site. */
+h2 {
+    margin: 0 0 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--couleur-trait-titre);
+    color: #1e293b;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+/* Mot mis en valeur dans le titre : italique bleu. */
+h1 em {
+    color: #0284c7;
+    font-style: italic;
+}
+
+.discret {
+    margin: 4px 0;
+    color: var(--couleur-discret);
+}
+
+
+/* ---------- En-tête : logo, titre centré, encadré à liseré rouge ---------- */
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 0 4px;
+    text-align: center;
+}
+
+.logo {
+    height: 64px;
+    width: auto;
+}
+
+/* Encadré gris avec liseré rouge à gauche (« quick answer » du site). */
+.encadre {
+    width: 100%;
+    margin: 4px 0;
+    padding: 14px 20px;
+    background: var(--couleur-bandeau);
+    border-left: 4px solid var(--couleur-rouge);
+    border-radius: 0 10px 10px 0;
+    color: #1e293b;
+    text-align: left;
+}
+
+/* Pastille verte « source / mis à jour » du site. */
+.pastille-verte {
+    padding: 2px 10px;
+    background: var(--couleur-vert-fond);
+    border: 1px solid var(--couleur-vert-trait);
+    border-radius: 6px;
+    color: var(--couleur-vert-texte);
+    font-size: 13px;
+    font-weight: 500;
+}
+
+
+/* ---------- Cartes ---------- */
+.carte {
+    padding: 16px;
+    background: #ffffff;
+    border: 1px solid var(--couleur-trait);
+    border-radius: var(--rayon-carte);
+    box-shadow: var(--ombre-carte);
+}
+
+.carte-alerte {
+    background: var(--couleur-fond-alerte);
+    border-color: var(--couleur-alerte);
+}
+
+.carte-alerte h2 {
+    color: var(--couleur-alerte);
+}
+
+
+/* ---------- Grilles de mise en page ---------- */
+.grille-kpi {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 12px;
+}
+
+.grille-deux {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(380px, 100%), 1fr));
+    gap: 16px;
+}
+
+
+/* ---------- Cartes d'indicateurs (KPI) : bandeau gris + grande valeur ---------- */
+.grille-kpi .carte {
+    padding: 0;
+    overflow: hidden;
+}
+
+/* Bandeau gris avec le nom de l'indicateur, comme le nom du fournisseur sur le site. */
+.kpi-titre {
+    padding: 10px 14px;
+    background: var(--couleur-bandeau);
+    border-bottom: 1px solid var(--couleur-trait);
+    color: #334155;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.kpi-valeur {
+    margin: 8px 0 0;
+    padding: 0 14px;
+    color: var(--couleur-texte);
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.kpi-detail {
+    padding: 0 14px 12px;
+    color: var(--couleur-discret);
+    font-size: 12px;
+    font-weight: 500;
+}
+
+
+/* ---------- Graphique en barres (répartition par fournisseur) ---------- */
+.ligne-barre {
+    display: grid;
+    grid-template-columns: 130px 1fr 70px;
+    align-items: center;
+    gap: 8px;
+    margin: 5px 0;
+    font-size: 13.5px;
+}
+
+.barre-libelle {
+    overflow: hidden;
+    color: #334155;
+    font-weight: 600;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.barre-fond {
+    height: 14px;
+    overflow: hidden;
+    background: #eef2f7;
+    border-radius: 7px;
+}
+
+.barre {
+    display: block;
+    height: 100%;
+    background: var(--couleur-bleu);
+    border-radius: 7px;
+}
+
+.barre-valeur {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+
+/* ---------- Tableaux ---------- */
+.tableau-defilant {
+    overflow-x: auto;
+    border: 1px solid var(--couleur-trait);
+    border-radius: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+}
+
+th,
+td {
+    padding: 7px 10px;
+    border-bottom: 1px solid var(--couleur-trait);
+    text-align: right;
+    white-space: nowrap;
+}
+
+/* La première colonne (noms) est alignée à gauche. */
+th:first-child,
+td:first-child {
+    text-align: left;
+}
+
+/* Pas de trait sous la dernière ligne : le cadre du tableau suffit. */
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* En-têtes : petites étiquettes en majuscules, cliquables pour trier. */
+th {
+    background: var(--couleur-bandeau);
+    color: var(--couleur-etiquette);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    cursor: pointer;
+    user-select: none;
+}
+
+/* Nom du fournisseur en gras, comme sur les cartes du site. */
+td:first-child {
+    color: #334155;
+    font-weight: 600;
+}
+
+tbody tr:hover {
+    background: var(--couleur-survol);
+}
+
+
+/* ---------- Filtres des top 10 (fournisseur / pays) ---------- */
+/* Les filtres sont en haut de la carte « Top 10 », sur un bandeau gris qui les relie aux tableaux. */
+.filtres {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding: 12px 14px;
+    background: var(--couleur-bandeau);
+    border: 1px solid var(--couleur-trait);
+    border-radius: 10px;
+}
+
+/* Titre de chaque classement (moins chers / plus chers) dans la carte « Top 10 ». */
+h3 {
+    margin: 0 0 8px;
+    color: #334155;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.filtres label {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+/* Petite étiquette en majuscules au-dessus de chaque liste. */
+.etiquette {
+    color: var(--couleur-etiquette);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+}
+
+select {
+    min-width: 200px;
+    padding: 8px 10px;
+    background: #ffffff;
+    border: 1px solid var(--couleur-trait);
+    border-radius: 8px;
+    color: var(--couleur-texte);
+    font: inherit;
+    font-size: 13.5px;
+}
+
+select:focus {
+    outline: 2px solid var(--couleur-bleu);
+    outline-offset: 1px;
+}
+
+/* Bouton bleu arrondi, comme les pastilles du site. */
+.filtres button {
+    padding: 8px 16px;
+    background: var(--couleur-bleu);
+    border: none;
+    border-radius: 999px;
+    color: #ffffff;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.filtres button:hover {
+    background: #0069d9;
+}
+
+/* Le résumé (nombre de produits) passe à la ligne, sous les listes. */
+.filtres .discret {
+    flex-basis: 100%;
+    margin: 0;
+    font-size: 12.5px;
+}
+
+/* Tableaux de classement : texte aligné à gauche, seul le prix reste à droite. */
+.tableau-classement th,
+.tableau-classement td {
+    text-align: left;
+}
+
+.tableau-classement th:last-child,
+.tableau-classement td:last-child {
+    text-align: right;
+}
+
+
+/* Flèche de tri à côté du nom de colonne (ajoutée par script.js). */
+.fleche {
+    margin-left: 6px;
+    opacity: 0.6;
+}
+
+/* Flèche de la colonne actuellement triée. */
+.fleche-active {
+    opacity: 1;
+    color: var(--couleur-bleu);
+}
+
+
+/* ---------- Petits écrans ---------- */
+@media (max-width: 480px) {
+    .grille-deux {
+        grid-template-columns: 1fr;
+    }
+
+    .ligne-barre {
+        grid-template-columns: 90px 1fr 56px;
+    }
+}

@@ -1,0 +1,550 @@
+/*
+ * Feuille de style de l'article « Internet en croisière : quelle eSIM choisir ? ».
+ * Reprend le design du site MyBestSim : fond blanc, police Poppins, texte bleu nuit,
+ * cartes à fine bordure, encadré à liseré rouge, accents bleus.
+ * Si l'article est collé dans WordPress, seules les classes .article-* sont à reprendre
+ * (le thème du site fournit déjà l'en-tête, le pied de page et la typographie).
+ */
+
+:root {
+    --texte: #0f172a;
+    --texte-doux: #475569;
+    --bordure: #e5e7eb;
+    --bandeau: #f8fafc;
+    --rouge: #e2001a;
+    --bleu: #007bff;
+    --vert: #16a34a;
+    --orange: #d97706;
+    --rayon: 16px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    /* Décalage pour que les ancres du sommaire ne collent pas au haut de l'écran. */
+    scroll-padding-top: 24px;
+}
+
+body {
+    margin: 0;
+    background: #ffffff;
+    color: var(--texte);
+    font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+    font-size: 17px;
+    line-height: 1.75;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+a {
+    color: var(--bleu);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+a:hover {
+    text-decoration-thickness: 2px;
+}
+
+/* ---------- En-tête du site (aperçu autonome uniquement) ---------- */
+
+.site-header {
+    border-bottom: 1px solid var(--bordure);
+    background: #ffffff;
+}
+
+.site-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 18px 24px;
+}
+
+.site-header__logo img {
+    display: block;
+    height: 40px;
+    width: auto;
+}
+
+.site-header__nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+}
+
+.site-header__nav a {
+    color: var(--texte);
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.site-header__nav a:hover {
+    color: var(--bleu);
+}
+
+/* ---------- Mise en page de l'article ---------- */
+
+.article {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+}
+
+.article-fil-ariane {
+    margin: 0 0 24px;
+    color: var(--texte-doux);
+    font-size: 14px;
+}
+
+.article-fil-ariane a {
+    color: var(--texte-doux);
+}
+
+.article-etiquette {
+    display: inline-block;
+    margin-bottom: 16px;
+    padding: 4px 14px;
+    border-radius: 999px;
+    background: #dcfce7;
+    color: #166534;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.article h1 {
+    margin: 0 0 20px;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+}
+
+.article h2 {
+    margin: 64px 0 20px;
+    font-size: 29px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.article h3 {
+    margin: 40px 0 12px;
+    font-size: 21px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.article p {
+    margin: 0 0 20px;
+}
+
+.article ul,
+.article ol {
+    margin: 0 0 24px;
+    padding-left: 24px;
+}
+
+.article li {
+    margin-bottom: 10px;
+}
+
+.article-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 20px;
+    margin: 0 0 32px;
+    color: var(--texte-doux);
+    font-size: 14px;
+}
+
+.article-chapo {
+    margin-bottom: 32px;
+    font-size: 19px;
+    line-height: 1.7;
+}
+
+/* ---------- Encadrés ---------- */
+
+.encadre {
+    margin: 32px 0;
+    padding: 24px 28px;
+    border-left: 4px solid var(--rouge);
+    border-radius: 0 var(--rayon) var(--rayon) 0;
+    background: var(--bandeau);
+}
+
+.encadre > :last-child {
+    margin-bottom: 0;
+}
+
+.encadre__titre {
+    margin: 0 0 12px;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.encadre--bleu {
+    border-left-color: var(--bleu);
+}
+
+.encadre--vert {
+    border-left-color: var(--vert);
+}
+
+.encadre--orange {
+    border-left-color: var(--orange);
+}
+
+/* ---------- Sommaire ---------- */
+
+.sommaire {
+    margin: 40px 0;
+    border: 1px solid var(--bordure);
+    border-radius: var(--rayon);
+    overflow: hidden;
+}
+
+.sommaire__titre {
+    margin: 0;
+    padding: 16px 28px;
+    background: var(--bandeau);
+    border-bottom: 1px solid var(--bordure);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.sommaire ol {
+    margin: 0;
+    padding: 24px 28px 24px 52px;
+}
+
+.sommaire a {
+    color: var(--texte);
+    text-decoration: none;
+}
+
+.sommaire a:hover {
+    color: var(--bleu);
+    text-decoration: underline;
+}
+
+/* ---------- Tableaux ---------- */
+
+.tableau-conteneur {
+    margin: 32px 0;
+    border: 1px solid var(--bordure);
+    border-radius: var(--rayon);
+    /* Le défilement horizontal reste dans le tableau : la page ne déborde jamais. */
+    overflow-x: auto;
+}
+
+.tableau-conteneur table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+    line-height: 1.55;
+}
+
+.tableau-conteneur caption {
+    padding: 16px 20px;
+    background: var(--bandeau);
+    border-bottom: 1px solid var(--bordure);
+    font-size: 14px;
+    font-weight: 600;
+    text-align: left;
+}
+
+.tableau-conteneur th {
+    padding: 14px 20px;
+    background: var(--bandeau);
+    border-bottom: 1px solid var(--bordure);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-align: left;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.tableau-conteneur td {
+    min-width: 140px;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--bordure);
+    vertical-align: top;
+}
+
+.tableau-conteneur tr:last-child td {
+    border-bottom: none;
+}
+
+.tableau-note {
+    margin-top: -16px;
+    color: var(--texte-doux);
+    font-size: 14px;
+}
+
+/* ---------- Images (emplacements suggérés) ---------- */
+
+.figure {
+    margin: 40px 0;
+}
+
+.figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--bordure);
+    border-radius: var(--rayon);
+}
+
+.figure__emplacement {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-height: 240px;
+    padding: 24px;
+    border: 2px dashed #cbd5e1;
+    border-radius: var(--rayon);
+    background: var(--bandeau);
+    color: var(--texte-doux);
+    font-size: 14px;
+    text-align: center;
+}
+
+.figure__emplacement strong {
+    color: var(--texte);
+    font-size: 15px;
+}
+
+.figure figcaption {
+    margin-top: 12px;
+    color: var(--texte-doux);
+    font-size: 14px;
+    text-align: center;
+}
+
+/* ---------- Appels à l'action ---------- */
+
+.bouton {
+    display: inline-block;
+    padding: 14px 28px;
+    border-radius: 999px;
+    background: var(--bleu);
+    color: #ffffff;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.bouton:hover {
+    background: #0063cc;
+    text-decoration: none;
+}
+
+.bouton--secondaire {
+    background: #ffffff;
+    border: 1px solid var(--bleu);
+    color: var(--bleu);
+}
+
+.bouton--secondaire:hover {
+    background: #eff6ff;
+}
+
+.appel-action {
+    margin: 56px 0;
+    padding: 36px 32px;
+    border: 1px solid var(--bordure);
+    border-radius: var(--rayon);
+    background: var(--bandeau);
+    text-align: center;
+}
+
+.appel-action h2,
+.appel-action h3 {
+    margin-top: 0;
+}
+
+.appel-action__boutons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+}
+
+/* ---------- FAQ ---------- */
+
+.faq details {
+    margin-bottom: 12px;
+    border: 1px solid var(--bordure);
+    border-radius: 12px;
+    background: #ffffff;
+}
+
+.faq summary {
+    padding: 18px 24px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.faq details[open] summary {
+    border-bottom: 1px solid var(--bordure);
+    background: var(--bandeau);
+    border-radius: 12px 12px 0 0;
+}
+
+.faq .faq__reponse {
+    padding: 20px 24px 4px;
+}
+
+/* ---------- Articles liés et pied d'article ---------- */
+
+/* « .article » devant le sélecteur : sans lui, la règle « .article ul » rajoute un retrait de 24 px. */
+.article .articles-lies {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin: 24px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.articles-lies li {
+    margin: 0;
+}
+
+.articles-lies a {
+    display: block;
+    height: 100%;
+    padding: 20px 24px;
+    border: 1px solid var(--bordure);
+    border-radius: var(--rayon);
+    color: var(--texte);
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.articles-lies a:hover {
+    border-color: var(--bleu);
+    color: var(--bleu);
+}
+
+/* ---------- Réseaux sociaux ---------- */
+
+.reseaux {
+    display: grid;
+    /* Même grille que « Pour aller plus loin » (.articles-lies) pour un alignement parfait. */
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin: 24px 0 0;
+}
+
+.reseaux__lien {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 24px;
+    border: 1px solid var(--bordure);
+    border-radius: var(--rayon);
+    color: var(--texte);
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.reseaux__lien:hover {
+    border-color: var(--bleu);
+    color: var(--bleu);
+}
+
+.reseaux__icone {
+    display: flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    color: #ffffff;
+}
+
+.reseaux__icone svg {
+    width: 22px;
+    height: 22px;
+}
+
+/* Couleurs de marque de chaque réseau. */
+.reseaux__icone--youtube {
+    background: #ff0000;
+}
+
+.reseaux__icone--instagram {
+    background: linear-gradient(45deg, #f9a03f, #e1306c 55%, #833ab4);
+}
+
+.reseaux__icone--tiktok {
+    background: #000000;
+}
+
+.reseaux__icone--facebook {
+    background: #1877f2;
+}
+
+.mention-affiliation {
+    margin-top: 48px;
+    padding-top: 40px;
+    /* border-top: 1px solid var(--bordure); */
+    color: var(--texte-doux);
+    font-size: 14px;
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 640px) {
+    body {
+        font-size: 16px;
+    }
+
+    .article {
+        padding: 32px 16px 56px;
+    }
+
+    .site-header__inner {
+        padding: 14px 16px;
+    }
+
+    .article h1 {
+        font-size: 30px;
+    }
+
+    .article h2 {
+        margin-top: 48px;
+        font-size: 24px;
+    }
+
+    .encadre {
+        padding: 20px;
+    }
+
+    .sommaire ol {
+        padding-left: 44px;
+        padding-right: 20px;
+    }
+
+    .appel-action {
+        padding: 28px 20px;
+    }
+}

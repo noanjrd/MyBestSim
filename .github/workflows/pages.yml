@@ -1,0 +1,61 @@
+# Publie le tableau de bord (racine) et l'article de blog (/article/) sur GitHub Pages à chaque push sur main.
+# Le rapport est régénéré ici à partir des CSV : le dossier dashboard/rapport/ n'est pas versionné.
+name: Publier le site sur GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  # Permet aussi de relancer la publication à la main depuis l'onglet Actions.
+  workflow_dispatch:
+
+# Droits minimaux nécessaires pour déployer sur Pages.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Une seule publication à la fois : une nouvelle annule celle en cours.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@v4
+
+      - name: Installer Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Générer le rapport
+        run: python dashboard/generer_rapport.py
+
+      # Assemble le site : le tableau de bord à la racine, l'article de blog dans /article/.
+      # L'article est autonome : son logo et ses images sont dans article/images/.
+      - name: Assembler le site
+        run: |
+          mkdir site
+          cp -r dashboard/rapport/. site/
+          cp -r article site/article
+          # Les PNG d'origine (lourds) ne sont pas publiés : seules les versions WebP le sont.
+          rm -f site/article/images/*.png
+
+      - name: Préparer l'artefact Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Déployer sur GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
